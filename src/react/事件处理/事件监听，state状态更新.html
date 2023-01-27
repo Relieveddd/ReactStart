@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+        1.事件监听、状态State和UI更新
+        说明：
+            1）事件监听触发，意味着用户对页面做了什么
+            2）用于对页面做什么，意味着页面一定要有对应的变化
+            3）页面需要变化，数据就必须变更，因为数据驱动页面
+            4）但是数据变化不能打破统一性原则，（不能从外部对数据进行修改）
+            5）所以props一定不能东
+            6）所以我们需要state状态，来作为修改内容的容器
+            .....
+        例子：
+            class Frank extends React.Component{
+                constructor(props){
+                    super(props);
+                    this.state={num:0};
+                    this.func=this.func.bind(this);
+                }
+                func(){
+                    this.setState({num:this.state,num+1});
+                }
+                render(){
+                    return (
+                        <div onClick={this.func}>这是一个div:{this.state.num}</div>
+                    );
+                }
+            }
+
+            ReactDOM.render(
+                <Freank />,
+                document.querySelector('body')
+            );
+
+            2)扩展：关于箭头函数 类组件 事件触发状态变更的改写
+                导言：
+                    //普通函数
+                    function func (temp){
+                        return  temp+100;
+                    }
+                    var result = func(50);
+                    console.log(result);
+                    // 普通箭头函数
+                    var func =(temp)=>{return temp+100; }
+                    var result=func(50);
+                    console.log(result);
+                    //普通箭头函数没有return，不具备返回值
+                    var func =(temp)=>{ temp+100; }
+                    var result=func(50);
+                    console.log(result);
+                    // 箭头函数省略大括号,直接表示后面的内容返回
+                    var func =(temp)=> temp+100;    
+                    var result=func(50);
+                    console.log(result);
+                    // 箭头函数省略了大括号，但是箭头后面添加小括号，表示小括号里面的内容是返回值
+                    var func =(temp)=>(temp+100); 
+                    var result=func(50);
+                    console.log(result);
+
+                改写：
+            class Frank extends React.Component{
+                constructor(props){
+                    super(props);
+                    this.state={num:0};
+                    this.func=this.func.bind(this);
+                }
+                func(){
+                    // this.setState({num:this.state,num+1});
+                    this.setState(
+                        prevState=>({num:prevState.num+1})
+                        );
+                }
+                render(){
+                    return (
+                        <div onClick={this.func}>这是一个div:{this.state.num}</div>
+                    );
+                }
+            }
+
+            ReactDOM.render(
+                <Frank />,
+                document.querySelector('body')
+            );
+        */
+    </script>
+  </body>
+</html>

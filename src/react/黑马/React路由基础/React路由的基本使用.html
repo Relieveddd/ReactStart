@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        import React from "react";
+        import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
+        /*
+          React路由的基本使用
+          Router组件：包裹整个应用，一个React应用只需要使用一次
+          两种常用Router：HashRouter 和BrowserRouter
+          HashRouter:使用URL的哈希值实现（localhost：3000/#/first）
+          （推荐）BrowserRouter：使用H5的history的API组件实现的（localhost：3000/first）
+        
+          Link组件：用于指定导航链接（a标签）
+          //to 属性：浏览器地址栏中的pathname（location.pathname）
+        
+          Route组件：指定路由展示组件相关信息
+          //path属性：路由规则
+          //component属性：展示的组件
+          //Route组件写在哪，渲染出来的组件就展示在哪
+          //<Route path="/first" component={First} />
+        */
+        class First extends React.Component { render() { return <p>这是页面一的内容</p> } }
+        class Index extends React.Component { render() { return <p>这是首页内容</p> } }
+
+        class App extends React.Component {
+            render() {
+                return (
+                    <Router>
+                        <div>
+                            <h1>React路由基础</h1>
+                            {/* 指定路由出口 */}
+                            <div>
+                                {/* 6.0之前的写法 */}
+                                {/* <Route path="/first" component={First} />
+                        <Route path="/index" component={Index} /> */}
+                                {/* 6.0之后版本的语法，使用element代替component，Route外面使用Routes包装 */}
+                                <Routes>
+                                    <Route path='/' element={<First />} />
+                                    <Route path='/first' element={<First />} />
+                                    <Route path='/index' element={<Index />} />
+                                </Routes>
+                                {/* 尤其要注意6.0版本之前使用Route包裹，6.0之后版本需要使用Routes包裹 */}
+                            </div>
+                            {/* 指定路由入口 */}
+                            <Link to="/first">页面一</Link>
+                            <br />
+                            <Link to='/index' >首页</Link>
+                        </div>
+                    </Router>
+                )
+            }
+        }
+
+
+        export default App;
+    </script>
+</body>
+
+</html>

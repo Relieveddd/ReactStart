@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+        import React from "react";
+
+
+        class App extends React.Component {
+        constructor(props){
+            super(props);
+            this.state={count:1};
+            this.handleClick=this.handleClick.bind(this);
+        }
+        handleClick(){
+            //setState是异步更新，在调用了setState之后，直接console拿到的结果还是更新之前的值
+            //使用setState更新状态的时候要注意，后面的setState不要依赖于前面的setState
+            //可以多次调用setState，但是页面只渲染一次
+            // this.setState({count:this.state.count+1});
+            // console.log('count:',this.state.count);
+            // this.setState({count:this.state.count+1});
+            // console.log('count:',this.state.count);
+
+
+            //推荐语法
+            //这种语法也是异步更新state
+            //参数state表示最新的state
+            //props表示最新的props
+            // this.setState((state,props)=>{
+            //   return {
+            //     count:this.state.count+1
+            //   }
+            // })
+            // this.setState((state,props)=>{
+            //   return {
+            //     count:this.state.count+1
+            //   }
+            // })
+            // console.log('count:',this.state.count)
+
+
+
+            //第二个参数
+            //场景：在状态更新（页面完成重新渲染）后立即执行某个操作
+            // 语法：setState（updater[,callback]）
+                this.setState((state,props)=>{
+                    return {
+                    count:this.state.count+1
+                    }
+                },()=>{
+                    console.log('count:',this.state.count);//异步，第二个结果
+                    console.log(document.getElementById('title').innerText);
+                    
+                })
+                console.log('count:',this.state.count)//同步，第一个结果就是
+        }
+        render() {
+            return (
+            <div>
+                <h1 id="title">计数器：{this.state.count}</h1>
+                <button onClick={this.handleClick}>+1</button>
+            </div>
+            );
+        }
+        }
+
+
+        export default App;
+
+        */
+    </script>
+</body>
+</html>

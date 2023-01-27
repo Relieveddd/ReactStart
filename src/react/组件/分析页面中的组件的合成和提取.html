@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+            0.导言
+                HTML+CSS阶段：
+                    编写页面之前，一定要先分析页面，分析页面结构，分析页面相关性与非相关性
+                JavaScript阶段
+                    编写页面之前，一定要先分析页面，分析页面结构，分析功能入口，分析页面逻辑，分析业务逻辑
+                Vue：
+                    编写页面之前。一定要分析页面，分析页面结构，分析组件构成，分析数据模型，分析生命周期
+                React：
+                    必须要先分析页面结构，针对组件功能的细微分析，争取构建可复用组件。
+
+            1.组件合成
+            描述：
+                一个组件的输入中引用其他组件，这个行为就是组件合成
+            说明：
+                1）在React中组件的概念相当宽泛 ，一个输入框、一个对象、一个对话框页面都可以是组件
+                2）ReactApp一般都会有一个顶级的单独App组件，所有内容都会在其下方执行
+            例子：
+            function Login(_temp){
+                return <h1>uname:{_temp.uname},upass:{_temp.upass}</h1>;
+                }
+
+                function App(_temp111){
+                return(<div>
+                    <div>{_temp111.uuid}</div>
+                    <Login uname='frank' upass="23" />
+                    <Login uname='yangliu' upass="4567" />
+                    <Login uname='yangruyi' upass="789" />
+                </div>);
+                }
+
+                ReactDOM.render(
+                    <App uuid="12234646" />,
+                    document.getElementById('root')
+                )
+
+            2.组件提取
+            描述：
+                代码编写的时候要从最小单元开始书写，所以组件合并是我们是实现更复杂组件的代码构建方式
+                组件提取思考问题的方式，分析页面自然要从最外层向最内层方向进行分析
+                这个拆分组件的思考过程，就是组件提取
+            
+            说明：
+                    <li className="countDown-item">
+                    <div className="counDown-itemBox">
+                        <img src="" alt="" />
+                        <div className="counDown-info">
+                        <header className="countDown-itemTitle">111</header>
+                        <p className="countDown-itemText">222</p>
+                        <span className="now-price">1321</span>
+                        <del className="pre-price">1231</del>
+                        </div>
+                    </div>
+                    </li>
+            例子：组件拆分
+                    function ProductItem(_propsObj){
+                        return(
+                            <li className="countDown-item">
+                            <div className="counDown-itemBox">
+                                <div className='countDown-img'>{_propsObj.imgsrc}</div>
+                                <div className="counDown-info">
+                                <header className="countDown-itemTitle">{_propsObj.info}</header>
+                                <p className="countDown-itemText">{_propsObj.info.description}</p>
+                                <span className="now-price">{_propsObj.info.newprice}</span>
+                                <del className="pre-price">{_propsObj.info.oldprice}</del>
+                                </div>
+                            </div>
+                            </li>
+                        );
+                    }
+                ----------------------------------------------------------------------------------------------
+                    _propsObj={imgsrc='',info:{title:'',description:'',newprice:'',oldprice:''}}
+                ----------------------------------------------------------------------------------------------
+                let tempInfo={title:'biaoti',desxription:'描述',newprice:'新价格',oldprice:'老价格'};
+                    ReacrDOM.render(
+                        <ProductItem imgsrc='231313.jpg'  info={tempInfo}  />,
+                        document.getElementById('root')
+                    );
+                ----------------------------------------------------------------------------------------------
+                    function ProductItem(_propsObj){
+                        return(
+                            <li className="countDown-item">
+                            <div className="counDown-itemBox">
+                                <ProductItemImg src={_propsObj.src} />
+                                <ProductItemText info={_propsObj.info} />
+                            </div>
+                            </li>
+                        );
+                    }
+        ---------------------------------------------------------------------------------------------------------
+                    function ProductItemImg(_srcObj){
+                        return  <div>{_srcObj.src}</div> ;
+                    }
+                    --------------------------------------------------
+                    function ProductItemText(_infoObj){
+                        return(
+                                <div className="counDown-info">
+                                <header className="countDown-itemTitle">{_infoObj.info.title}</header>
+                                <p className="countDown-itemText">{_infoObj.info.description}</p>
+                                <span className="now-price">{_infoObj.info.newprice}</span>
+                                <del className="pre-price">{_infoObj.info.oldprice}</del>
+                                </div>
+                        );
+                    }
+
+        */
+    </script>
+  </body>
+</html>

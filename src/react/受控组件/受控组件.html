@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+        1.受控组件
+            说明：
+            class NameForm extends  React.Component{
+                constructor(props){
+                    super(props);
+                    this.state={uname:''};
+                    this.valueChange=this.valueChange.bind(this);
+                }
+                valueChange(event){
+                    this.setState({uname:event.target.value})
+                }
+                render(){
+                    return (
+                        <form>
+                            <h1>form used for collection username input</h1>
+                            <input type="text" onChange={this.valueChange} />
+                            <div>{this.state.uname}</div>
+                            </form>
+                    );
+                }
+            }
+            ReactDOM.render(
+                <NameForm />,
+                document.querySelector("body")
+            )
+            上面的组件可以认为是一个经典的双向数据绑定案例
+            页面input的修改会同步触发state状态
+            onChange的事件触发又会同步修改state的属性
+            state状态的属性发生修改会立即反馈到div显示的内容上
+            但他不是一个合格的受控组件
+            因为实际上input的内容对于div回显来说并不是可控的
+            ----------------------------------------------------------------------------------------------
+            render(){
+                ....
+                <input  ... value={this.state.uname} />
+            }
+            只要对input 的回显加以控制，那么无论是div的回显还是input的回显
+            都是源自于数据状态state
+
+            valueChange(event){
+                this.setState({uname:'VIP:'+event.target.value})
+            }
+
+      */
+    </script>
+  </body>
+</html>

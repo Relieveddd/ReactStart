@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*    
+        1.状态提升  Lifting State Up
+        描述：将多组件共享的state移动到这些组件最接近的祖先组件的行为，称为状态提升
+        语法：没有统一标准语法
+        说明：
+            1）状态提升是为了保持数据同一性原则而提出的一种代码编写方式
+            2）状态提升的核心是借用了props属性不可修改的规则（PFE）
+            3）状态提升遵守了组件的变化依靠state状态来实现【数据驱动页面】这一原则
+            4）状态提升和JavaScript的事件委托极为类似
+        例子：
+            .pro:nth-child(2){margin-top:100px}
+            // 子组件
+            class UserLoginState extends React.Component{
+                constructor(props){
+                    super(props);
+                    // 子组件添加state状态，并用state状态中的属性来表示用户的登录状态
+                    this.state={logined:false};
+                }
+                render(){
+                    return (
+                        <div>
+                            <div>
+                                // 通过外部传入props的属性值来传递页面名称
+                                here is {this.props.pageName} LoginState
+                            </div>
+                            // 根据state状态来显示用户的登录结果
+                            <div>
+                                {this.state.logined?'已登录':'未登录'}
+                            </div>
+                        </div>
+                    );
+                }
+            }
+            // 父组件
+            function Pages(){
+                return(
+                    <div className='pro'>
+                        // 假设一个组件表示一个完整的页面，一个项目可以存在多个页面
+                        // 通过props传入页面名称，假设方式来区分当前处于哪一个页面
+                        <UserLoginState pagename='首页' />
+                        <UserLoginState pagename='热卖' />
+                    </div>
+                );
+            }
+            // 渲染
+            ReactDOM.render(
+                <Pages />,
+                document.querySelector('body')
+            );
+            -----------------------------------------------------------------------------
+            -----------------------------------------------------------------------------
+            ...
+                    <div className='pro'>
+                        // 假设一个组件表示一个完整的页面，一个项目可以存在多个页面
+                        // 通过props传入页面名称，假设方式来区分当前处于哪一个页面
+                        <UserLoginState pagename='首页' />
+                        <UserLoginState pagename='热卖' />
+                        // 为了让用户在每一个页面都能完成退出登录操作
+                        <hr />
+                        <div>
+                            用户名:<input />
+                        </div>
+                        <div>
+                            密码:<input />
+                        </div>
+                        <p>
+                            <button>登录</button>
+                            &nbsp;
+                            <button>退出</button>
+                            </p>
+                    </div>
+            ...
+            ------------------------------------------------------------------------------------
+            // 给输入框绑定事件，给按钮绑定事件
+            class UserLoginState extends React.Component{
+                constructor(props){
+                    super(props);
+                    // 子组件添加state状态，并用state状态中的属性来表示用户的登录状态
+                    this.state={logined:false,username:'',password:''};
+                    // 回调函数绑定this 
+                    this.inputHandle=this.inputHandle.bind(this);
+                    this.loginHandle=this.loginHandle.bind(this);
+                    this.exitHandle=this.exitHandle.bind(this);
+                }
+                // 添加函数
+                inputHandle(){}
+                loginHandle(){}
+                exitHandle(){}
+                render(){
+                    return (
+                        <div>
+                            <div>
+                                // 通过外部传入props的属性值来传递页面名称
+                                here is {this.props.pageName} LoginState
+                            </div>
+                            // 根据state状态来显示用户的登录结果
+                            <div>
+                                {this.state.logined?'已登录':'未登录'}
+                            </div>
+                            <hr />
+                            <div>
+                                用户名:<input value={this.state.username} onChange={this.inputHandle} />
+                            </div>
+                            <div>
+                                密码:<input value={this.state.password} onChange={this.inputHandle} />
+                            </div>
+                            <p>
+                                <button onClick={this.loginHandle}>登录</button>
+                                &nbsp;
+                                <button onClick={this.exitHandle}>退出</button>
+                                </p>
+                        </div>
+                    );
+                }
+            }
+            --------------------------------------------------------------------------------------------------------
+            // 丰满受控组件input的回调函数
+            inputHandle(event){
+                // 获取受控组件的id当作state的属性，所以id必须的state状态属性保持一致
+                let keyName=event.target.id;
+                // 直接根据获取到的keyName更改state状态中的属性
+                this.setState([keyname]:event.target.value);
+            }
+            ...
+            render(){
+                    return (
+                        <div>
+                            <div>
+                                // 通过外部传入props的属性值来传递页面名称
+                                here is {this.props.pageName} LoginState
+                            </div>
+                            // 根据state状态来显示用户的登录结果
+                            <div>
+                                {this.state.logined?'已登录':'未登录'}
+                            </div>
+                            <hr />
+                            <div>
+                                用户名:<input id='username' value={this.state.username} onChange={this.inputHandle} />
+                            </div>
+                            <div>
+                                密码:<input id='password' value={this.state.password} onChange={this.inputHandle} />
+                            </div>
+                            <p>
+                                <button onClick={this.loginHandle}>登录</button>
+                                &nbsp;
+                                <button onClick={this.exitHandle}>退出</button>
+                                </p>
+                        </div>
+                    );
+                }
+            
+------------------------------------------------------------------------------------------------------------------
+                // 状态已经能够变更
+                // 那么继续丰满登录退出功能
+                loginHandle(){
+                    if(this.state.username=='frank' && this.state.password=='123456'){
+                        this.setState({logined:true});
+                    }
+                }
+                exitHandle(){
+                    if(this.state.logined){
+                        this.setState({logined:false});
+                        // 理论上state状态应该清除
+                        this.setState({logined:false,username:'',password:''})
+                    }
+                }
+
+
+                ---------------------------------------------------------------------------------------------
+                ---------------------------------------------------------------------------------------------
+                ---------------------------------------------------------------------------------------------
+                ---------------------------------------------------------------------------------------------
+                ....
+                class Pages extends React.Componet{
+                    constructor(props){
+                        super(props);
+                    }
+                    render(
+                        return (
+                            <div>
+                                <UserLoginState pageName='首页' />
+                                <UserLoginState pageName='热卖' />
+                            </div>
+                        );
+                    )
+                }
+                ....
+                --------------------------------------------------------------------------------------------
+                --------------------------------------------------------------------------------------------
+                // 子组件
+                class UserLoginState extends React.Component{
+                constructor(props){
+                    super(props);
+                    // state首先要拿出
+                    // this.state={logined:false,username:'',password:''};
+                    // 因为所有的回调都操作了state，所以必须移除
+                    // this.inputHandle=this.inputHandle.bind(this);
+                    // this.loginHandle=this.loginHandle.bind(this);
+                    // this.exitHandle=this.exitHandle.bind(this);
+                }
+                // 所以三个回调函数的实现都需要移出
+                // inputHandle(){
+                //     let keyName=event.target.id;
+                //     this.setState({[keyName]:event.target.value});
+                //     console.log(this.state);
+                // }
+                // loginHandle(){
+                //     if(this.state.username=='frank' && this.state.password=='123456'){
+                //     this.setState({logined:true});
+                //     }
+                // }
+                // exitHandle(){
+                //     if(this.state.logined){
+                //     this.setState({logined:false});
+                //     }
+                // }
+                render(){
+                    return (
+                    <div className='pro'>
+                        <div>
+                        here is {this.props.pageName} LoginState
+                        </div>
+                        <div>
+                        {this.props.logined?'已登录':'未登录'}
+                        </div>
+                        <hr />
+                        <div>
+                        用户名:<input id='username' value={this.props.username} onChange={this.props.inputHandle} />
+                        </div>
+                        <div>
+                        密码框:<input id='password' value={this.props.password} onChange={this.props.inputHandle} />
+                        </div>
+                        <p>
+                        <button onClick={this.props.loginHandle}>登录</button>
+                        &nbsp;
+                        <button onClick={this.props.exitHandle}>退出</button>
+                        </p>
+                    </div>
+                    );
+                }
+                }
+                // 父组件
+                class Pages extends React.Component{
+                    constructor(props){
+                        super(props);
+                        this.state={logined:false,username:'',password:''};
+                        this.inputHandle=this.inputHandle.bind(this);
+                        this.loginHandle=this.loginHandle.bind(this);
+                        this.exitHandle=this.exitHandle.bind(this);
+                    }
+                    inputHandle(){
+                        let keyName=event.target.id;
+                        this.setState({[keyName]:event.target.value});
+                        console.log(this.state);
+                    }
+                    loginHandle(){
+                        if(this.state.username=='frank' && this.state.password=='123456'){
+                        this.setState({logined:true});
+                        }
+                    }
+                    exitHandle(){
+                        if(this.state.logined){
+                        this.setState({logined:false});
+                        }
+                    }
+                    render(){
+                        return (
+                            <div>
+                                <UserLoginState 
+                                logined={this.state.logined}
+                                username={this.state.username}
+                                password={this.state.password}
+                                inputHandle={this.inputHandle}
+                                loginHandle={this.loginHandle}
+                                exitHandle={this.exitHandle}
+                                pageName='首页'
+                                 />
+                                <UserLoginState 
+                                 logined={this.state.logined}
+                                username={this.state.username}
+                                password={this.state.password}
+                                inputHandle={this.inputHandle}
+                                loginHandle={this.loginHandle}
+                                exitHandle={this.exitHandle}
+                                pageName='热卖' />
+                            </div>
+                        );
+                        }
+                }
+                // 渲染
+            ReactDOM.render(
+            <Pages />,
+            document.querySelector('body')
+            );
+      */
+    </script>
+  </body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+        1.元素elements
+        描述：元素Element（就是JSX写出来的玩意儿），是React中最小的构建模块
+        语法：let ele =<div></div>
+        说明：
+            1）元素就是将来显示在页面上的结构
+            2)React 中元素就是对象，因为使用JSX组成的
+            3）元素不是组件，元素是组件组成的部分
+        例子：
+            let ele1=<div>Hello Element!</div>;
+            let ele2=<div>Hello Elements</div>;
+            let ele3=<div>Hello Elementsss</div>;
+
+            ReactDOM.render(
+                ele,
+                document.getELementById('root')
+            );
+
+        2.ReactDOM
+        描述：ReactDOM就是一套用来将【真实DOMTree的每一个元素】与【React中的每一个元素】其匹配的规范
+        语法：规范哪里来的
+        说明：
+            1）dom是帮助JavaScript管理操作HTML页面的规范
+                ReactDOM是帮助React 管理操作HTML页面的规范
+            2)DOM中node节点是JavaScript语言写的
+                ReactDOM中的Element元素是JSx写的
+            3)DOM中提供了一系列的API帮助我们操作管理页面
+                ReactDOM也提供了一系列的API来帮助我们操作管理页面
+
+        3.render（16，18的render不一样，16中有两个参数，18只有一个参数）
+            ReactDOM.render
+            描述：render方法能够将一个元素渲染到指定的位置
+            语法：let newReactDOMElement=ReactDOM.render(_reactElement,_rootContainerNode,?_callback);
+            说明：
+                1）_reactElement是我们需要传入的react元素，必须是JSX写的
+                2）_reactContainerNode 是我们将要吧react元素放入的容器节点，必须是一个DOM节点
+                3）_callback是渲染完毕 的回调函数，可选
+                4）newReactElement新生成的react元素，和_reactElement必须保持一致，但并不是同一个
+
+
+
+
+            let div1 = document.getElementById
+
+        注意：
+            React元素是不可突变的，可以理解为静态
+            所以一般约定使用const创建，而非let 或var
+            所以如果需要更新UI界面，那就在创建一个新的，然后用新的去覆盖原有的
+        */
+    </script>
+  </body>
+</html>

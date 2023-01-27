@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+        1.导言
+        说明：
+          1）html表单
+            表单通常会保持自己的状态不变
+            优势是因果式思想容易理解，因为页面驱动数据是最开始学习的
+          2）React表单
+            实际上React中使用普通的form表单没有任何问题
+            吧所有的数据变化都反馈到了state状态上，秉承了数据的同一性原则
+
+            补充：
+            表单不管怎么写，永远都是表单。只不过一个是放在页面上，一个是放在state里面的
+            <form>
+              <div>
+                <span>账户：</span>
+                <input type="text" name="username" />
+                </div>
+                <div>
+                <span>密码：</span>
+                <input type="password" name="password" />
+                </div>
+            </form>
+
+        2.同一性原则
+        说明：
+            实际上是【同一性原则】和双向数据绑定 两种意识流的融合
+            【没有数据绑定】
+              页面UI就是页面UI，数据是数据
+            【双向数据绑定】
+              页面UI与数据绑定。同时数据也会和页面UI绑定
+            【同一性原则】
+              同一性原则是实现双向数据绑定的前提和原理
+              就是数据的来源保持单一，无论页面的UI变化，还是数据的变更都只能来自于唯一的数据位置
+              
+        */
+    </script>
+  </body>
+</html>

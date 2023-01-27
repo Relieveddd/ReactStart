@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+        1.生命周期
+        描述:
+            在React中生命周期存在的两个含义
+            一是指组件从开始到销毁的这个过程，这个抽象的过程是生命周期
+            二是指组件在整个生命周期过程中由React不断唤醒的【代表各个功能的回调函数】
+
+        语法：
+            挂载：（mounting）：组件第一次渲染到DOM时执行
+                componentDidmount(){....}
+            卸载：ummounting ：组件产生的DOM被销毁
+                componentWillUmmount(){...}
+        注意：
+            今天所用的只是简易生命周期，只是为了感受生命周期的作用
+        例子：
+            class Login extends React.Component{
+                constructor(props){
+                    super(props);
+                    this.state1231={num:0};
+                }
+                componentDidmount(){
+                    // 
+                }
+                componentWillUmmount(){
+                    // 
+                }
+                render(){
+                    return <div>uid:{this.state1231.num++},upass:{this.props.upass}</div>
+                }
+            }
+            setInterval(()=>{
+                ReactDOM.render(<Login upass='2345' />,document.querySelector('body'));
+            },1000);
+        
+        2.生命周期函数用法
+            说明：
+                已知:
+                我们需要定时器来更新数据，从而更新UI
+                定时器不能放在组件外
+                组件被销毁的时候定时器也得被销毁，不能出现‘内存泄漏’
+                可知：
+                我们可以在挂载的函数里面创建定时器
+                可以在卸载的函数里面销毁定时器
+            class Login extends React.Component{
+                constructor(props){
+                    super(props);
+                    this.state1231={num:0};
+                }
+                componentDidmount(){
+                    // 定时修改num内容
+                    this.timer=setInterval(()=>{
+                        this.state1231.num++;
+                    },1000);
+                }
+                componentWillUmmount(){
+                    // 卸载定时器
+                    clearInterval(this.timer);
+                }
+                render(){
+                    return <div>uid:{this.state1231.num},upass:{this.props.upass}</div>
+                }
+            }
+            ReactDOM.render(<Login upass='2345' />,document.querySelector('body'));
+            ------------------------------------------------------------------------------------------
+            ------------------------------------------------------------------------------------------
+
+        3.状态变更与组件渲染
+            说明：
+            已知
+                1）JavaScript追求模块化编程思想，追求数据同一性原则（数据来源唯一）
+                2）vue框架不管怎么觉得怪异，都必须遵守一个原则，尽可能别写局部变量
+                3）JavaScript局部变量除了闭包，不允许其他任何方式进行操作
+                4）构造函数中如果存在私有，一般都会通过添加共有的操作方法控制
+            所以：
+                state在React中是私有的，不能直接修改
+                必须使用react提供的API来修改，才可以触发React的UI更新机制
+            回忆：
+                function Wxpurse(){
+                    // 私有属性
+                    var money;
+                    // 私有属性的公共方法
+                    this.setMoney=function(_tempMoney){money+=_tempMoney;}
+                    this.getMoney=function(){return money;}
+                }
+            说明：
+                直接修改state状态，不会重新渲染组件
+                用setState()代替：this.setState({num:1})
+                唯一可以直接修改state的位置只有constructor构造函数
+            说明：
+                class Login extends React.Component{
+                constructor(props){
+                    super(props);
+                    this.state={num:0};
+                }
+                componentDidMount(){
+                    // 定时修改num内容
+                    this.timer=setInterval(()=>{
+                    this.setState({num:this.state.num+1;});
+                    console.log("定时器执行");
+                    },1000);
+                }
+                componentWillUmmount(){
+                    // 卸载定时器
+                    clearInterval(this.timer);
+                }
+                render(){
+                    return <div>uid:{this.state.num},upass:{this.props.upass}</div>;
+                }
+                }
+                ReactDOM.render(<Login upass='2345' />,document.querySelector('body'));
+
+        */
+      document.querySelector("body");
+    </script>
+  </body>
+</html>

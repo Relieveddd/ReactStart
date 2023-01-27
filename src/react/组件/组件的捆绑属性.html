@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+        1.组件捆绑属性props
+        描述：组件捆绑属性，简称为属性。就是在组件渲染过程中，react提供给用来接受外部传入key值的唯一对象
+        语法：function Components （props）{....}
+        说明：
+            1)本质上props其实就是函数的一个形参，所以理论上叫什么都行，props就是propertys的简称
+            eg：
+                function Componengs(_props){return <div>{_props.src}</div>}
+                function Componengs(props){return <div>{props.src}</div>}
+                function Componengs(hahahha){return <div>{hahahha.src}</div>}
+            2)props是一个对象，并且永远只能是一个对象。这是react在设置组件传参机制的时候内部规定的，我们无法更改
+        2.组件捆绑属性props的“只读”特性
+            导言：
+                还记得【值传递 & 地址传递】   |【内部修改外部不变 & 内部修改外部改变】
+                eg：
+                    // 值传递
+                    function changeNum(_num){
+                        _num-=100;
+                        return _num;
+                    }
+                    var num =10 ;
+                    changeNum(num);
+                    console.log(num);
+                    // 地址传递
+                    fucntion changeArr(_arr){
+                        _arr.length=0;
+                        return _arr;
+                    }
+                    var arr=[100,200];
+                    changeArr(arr);
+                    console.log(arr);
+                描述：
+                    React中组件Components的捆绑属性props由react框架自己生成，而非主动编写。
+                    props属性会在组件渲染的时候，将组件上所有的key和value作为某个对象的属性被赋予进去
+                    最终将这个对象赋值给props
+                    上面的描述意义就是:
+                    1)框架内部规定props必须，也只能有一个对象
+                    2）所以React 中所有组件的Components在底层是线上都存在风险称为‘非纯函数’
+                    3）所以React只能约定props是只读，操作props的行为不被允许
+                    4）页面总是动态可变的，一成不变的组件也没有意义
+                    5）所以React中必须有一个（），可以使得我们的组件是纯函数的前提下，来动态响应用户的操作
+                        这就是我们下节课要将的【状态state】
+                说明：
+                    纯函数（PEE,Pure Function Expression）。就是指函数在执行的时候没有任何隐患的纯粹函数
+                    纯函数的返回结果只依赖与他的参数，并且在执行的时候没有副作【BFC】
+                例子：
+                    // 纯函数
+                        function ProductItem（props）{return <div>{props.src}</div>}
+                    // 不纯函数
+                    function ProductItem(props){props={src:'123.jpg'}; return <div>{props.src}</div>}
+                    // 组件渲染
+                    ReactDOM.render(
+                        <ProductItem src='123.jpg' />,
+                        document.getElementById("root")
+                    );
+
+        */
+    </script>
+  </body>
+</html>

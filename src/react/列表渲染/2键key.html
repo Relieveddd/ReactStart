@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+      1.键key
+        描述：
+            React中有提到的有关于列表的键Key和JavaScript中对象的键属性Key没有任何关系
+            在React中Key是给列表中的列表单元属性的唯一性标识
+            你可以认为
+                React 专门给列表list提供的单元id
+                以便于未来当item发生变化的时候，可以通过这个唯一标识key来进行操作
+        语法：
+            可以添加在Element元素上：<li key={......}></li>
+            也可以添加在组件Component上:<List key={..} />
+        说明：
+            1）React约定，每一个列表单元就必须有一个Key  （框架约定）
+            2）理论上可以使用任意内容作为单元的Key
+            3）列表单元的Key要求在一组兄弟层级中不能重复，但是全局范围内中没有这个限制
+            4）一般不建议使用下标来作为Key，因为列表的顺序有可能伴随用户的操作发生变化
+                例如：
+                <ul>
+                    <li key={0}>111</li>
+                    <li key={1}>222</li>
+                    <li key={2}>333</li>
+                </ul>
+                ------------------------------
+                 <ul>
+                    <li key={1}>222</li>
+                    <li key={2}>333</li>
+                </ul>
+                let arr=['frank','luna','jack','pollu']
+        补充：
+                官方：一般建议使用数据中的id值作为key
+                个人：我们建议react列表所使用的数据中，每一个元素对应的值都是一个object结构
+                    一般建议使用数据中的id属性的值作为key
+                    例如
+                        let arr=['frank','luna','jack','pollu']
+                        [{id:1,name:'frank'},{id:2,name:'luna'},{id:3,name:'jack'},{id:4,name:'pollu'}]
+                所以：
+                    function ListItem(props){
+                    return <li>{props.context}</li>
+                    }
+
+                    class UserList extends React.Component{
+                    constructor(props){
+                        super(props);
+                    }
+                    render(){
+                        return(
+                        <ul>{this.props.dataList.map(
+                        (_tempUserObj)=><ListItem key={_tempUserObj.id} context={_tempUserObj.name} />
+                        )}</ul>
+                        );
+                    }
+                    }
+                    let arr=[{id:1,name:'frank'},{id:2,name:'luna'},{id:3,name:'jack'},{id:4,name:'pollu'}];
+                    ReactDOM.render(
+                    <UserList dataList={arr} />,
+                    document.querySelector("body")
+                    );
+                
+
+
+      */
+    </script>
+  </body>
+</html>

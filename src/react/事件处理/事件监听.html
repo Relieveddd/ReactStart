@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+       1.事件监听
+            例子：
+            <div onclick="func()">这是一个div</div>
+            <script>
+              function func(){..}
+        
+      2.React事件监听
+              描述：
+                React事件监听就是让React中Element元素能够响应用户的操作的一种代码构建方式
+                与DOM监听本质上是一回事，只不过React中的事件监听需要JSX语法
+              语法：
+                <... onClick={函数名}></...>
+              说明：
+                1）React的事件监听与DOM的事件监听最大的区别是【必须使用驼峰命名】
+                2）React事件中的事件监听和dom中的HTML事件语法类似，直接写在Element元素上
+                3）React监听事件通过JSX语法传递一个函数名，不是调用，也不是字符串
+              例子：
+                function FrankDiv(){
+                  return <div onClick={fn}>这是一个div</div>;
+                }
+                function fn(){
+                  console.log("测试React的点击事件")
+                }
+                ReactDOM.render(
+                  <FrankDiv />,
+                  document.querySelectory("body") 
+                );
+        3.类组件中的事件监听功能
+                语法：
+                  class 组件名 extends React.Component{
+                      //构造函数
+                      constructor(props){
+                        super(props);
+                        //React中提供绑定this的固定语法
+                        this.func=this.func.bind(this)
+                        ...
+                      }
+                      func(){
+                        ...
+                      }
+                      //渲染函数
+                      render(){
+                        return <div onClick={this.func}>这是一个div</div>;
+                      }
+                  }
+                  例子：
+                  class Frank extends React.Component{
+                    constructor(props){
+                      super(props);
+                      this.func=this.func.bind(this);
+                    }
+                    func(){
+                      console.log('测试React点击事件，类组件')
+                    }
+                    render(){
+                      return <div onClick={this.func}>这是一个div</div>;
+                    }
+                  }
+                  ReactDOM.render(
+                    <Frank />,
+                    document.querySelector('body')
+                  )
+
+                  扩展：
+                    1）属性初始化语法
+                      例子：
+                      ...
+                      constructor(){
+                        super(props)；
+                        //this.func=this.func.bind(this);
+                      }
+                      // func(){...}
+                      func =()=>{
+                        console.log('测试react点击事件，属性初始化',this)
+                      }
+                      ...
+                    2)渲染时绑定
+                    例子：
+                      .....
+                      constructor(props){
+                        super(props);
+                      }
+                      func(){
+                        console.log('测试react点击事件'----渲染时绑定,this);
+                      }
+                      render(){
+                        return (<div onClick=(e)=>{this.func(e)}>这是以一个div </div>);
+                      }
+                      .....
+
+      */
+    </script>
+  </body>
+</html>

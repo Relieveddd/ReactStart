@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+        1.条件渲染
+            导言：
+            条件判断if结构，if条件结构代表了控制程序走向的底层逻辑语法锁
+            是一种处理逻辑问题的控制机制
+            vue 中的v-if ，封装在vue框架内部的语法糖里
+            // if else 后面如果只有一句，那么中括号可以不用加
+            if（flag）
+                implement something A;
+            else
+                implement something B;
+            -------------------------------------------------------------
+            //能在不同的状态下切换
+            var flag =true;
+            if(flag){
+                implement something A;
+                flag =!flag;
+            }else{
+                implement something B;
+                flag=!flag;
+            }
+            -------------------------------------------------------------
+            <template>
+                <div v-if='type==A'>A</div>
+                <div v-else-if='type==B'>B</div>
+                <div else>C</div>
+            </template>
+            描述：
+                根据组件的状态State中的属性值，来决定渲染组件的哪些部分，或者哪些子组件
+                这种书写代码的逻辑行为，称为条件渲染
+            说明：
+                1）条件渲染必须依托于事件，否则就不存在条件的意义
+                2）条件渲染是需要加锁，需要吧锁添加在组件内部的state状态上
+                3）事件中需要对锁进行处理，不同的操作对锁的状态有不同的影响
+                4）渲染方法中要能够响应锁的变化，从而实现条件渲染
+            例子：
+                class LoginContent extends React.Component{
+                    constructor(props){
+                        super(props);
+                        this.state={loginFlag:false};//表示当前登录状态：未登录
+                        this.changeLoginState=this.changeLoginState.bind(this);
+                    }
+                    changeLoginState(){
+                        this.setState(prevState=>({loginFlag: !prevState.loginFlag}));
+                    }
+                    render(){
+                        //根据不同的State状态，来设置页面的不同Element元素结构 
+                        let jsx1='';
+                        if(this.state.loginFlag){
+                        jsx1=<h1>已登录</h1>;
+                        }else{
+                        jsx1=<h1>未登录</h1>;
+                        }
+                        return (
+                        <div>
+                            {jsx1},
+                            <button onClick={this.changeLoginState}>切换登陆状态</button>
+                        </div>
+                        );
+                    }
+                    }
+                    ReactDOM.render(
+                    <LoginContent  />,
+                    document.querySelector('body')
+                    );
+            扩展：
+                    render(){
+                        return(
+                            <div>
+                                {this.state.loginFlag?<h1>已登录</h1>:<h1>未登录</h1>}
+                                </div>
+                        )
+                    }
+                    -------------------------------------------------------------
+                    防止组件渲染
+                        class LoginContent extends React.Component{
+                        constructor(props){
+                            super(props);
+                            this.state={loginFlag:false};//表示当前登录状态：未登录
+                            this.changeLoginState=this.changeLoginState.bind(this);
+                        }
+                        changeLoginState(){
+                            this.setState(prevState=>({loginFlag: !prevState.loginFlag}));
+                        }
+                        render(){
+                            return(
+                            <div>
+                                {this.state.loginFlag?null:<h1>还未登录</h1>},
+                                <button onClick={this.changeLoginState}>点击更换登录状态</button>
+                            </div> 
+                            )
+                        }
+                        }
+                        ReactDOM.render(
+                        <LoginContent  />,
+                        document.querySelector('body')
+                        );
+
+        */
+    </script>
+  </body>
+</html>

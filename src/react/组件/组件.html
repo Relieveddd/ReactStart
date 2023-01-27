@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+        1.组件components
+            描述：
+                组件components是构建页面的独立单元，一个组件中可以包括多个元素Element
+            语法：
+                声明语法：
+                    ES5语法：【函数式组件】
+                    function ComponentNameYouLike（形参）{
+                        return <E>....{形参a}</E>
+                    }
+                    ES6语法：【类组件】
+                    class ComponenYouLike{
+                        constructor（形参）{
+                            super（形参）;
+                            ...
+                        }
+                        ...
+                        render(){
+                            return <E>...{形参a}，....{形参b} </E>
+                        }
+                    }
+                调用语法：
+                <ComponentNameYouLike key="value1" key2="value2"... />
+            例子：
+                            // function Login(_temp){
+                //   return <h1>uname:{_temp.uname},upass:{_temp.upass}</h1>;
+                // }
+                class Login extends React.Component{
+                constructor(props){
+                    super(props);
+                }
+                render(){
+                    return(
+                    <h1>uname:{this.props.uname},upass:{this.props.upass}</h1>
+                    );
+                }
+                }
+
+                ReactDOM.render(
+                <Login uname='frank' upass='1213' />,
+                document.getElementById('root')
+                );
+            
+
+            2.组件语法区别
+                相同点：1.无论是函数式组件还是类组件首字母都是大写，
+                        2.无论是函数式组件还是类组件首字母都需要一个访问值
+                        3.无论是函数式组件还是类组件首字母都必须通过形参从外部的props来传入
+
+                不同点：构造函数里面充满各种this，而组件中并没有
+                        构造函数返回的是JavaScript对象，组件返回的是react元素
+                
+                利弊：
+                    函数式组件：
+                        结构清晰，用法简单
+                    类组件：
+                        结构符合模块化思想
+
+
+            3.组件渲染
+            说明：
+                不同于元素渲染的直接书写元素名称，组件渲染需要先把组件写成HTML元素的样子
+                <ComponentYouLike />
+                然后再将我们需要组件内部使用的具体属性以html元素属性写在元素上
+                <Component key1="value1"  key2="key2" />
+                最后当组件被react渲染的时候，这些属性会被react单独提取出来构成一个对象
+                并将这个对象作为实参赋值给组件的形参
+                [key1="value1",key2="value2"....]
+        */
+    </script>
+  </body>
+</html>

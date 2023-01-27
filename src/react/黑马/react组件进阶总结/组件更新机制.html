@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            import React from "react";
+
+            组件更新机制
+            setState（）的两个作用1.修改state 2.更新组件
+            过程：父组件重新渲染时，也会重新渲染子组件。但只会渲染当前组件子树（当前组件及其所有子组件）
+
+
+            
+
+
+            class App extends React.Component {
+            constructor(props){
+                super(props);
+                this.state={color:'#369'};
+            }
+            getColor(){
+                return Math.floor(Math.random()*256);
+            }
+            changeBG=()=>{
+                this.setState(()=>{
+                return {
+                    color:`rgb(${this.getColor()},${this.getColor()},${this.getColor()})`
+                }
+                })
+            }
+            render() {
+                return (
+                <div className="contianer" style={{backgroundColor:this.state.color}}>
+                    <button onClick={this.changeBG}>根组件 - 切换颜色状态</button>
+                    <div className="app-wrappr">
+                        <Parent1 />
+                        <Parent2 />
+                    </div>
+                </div>
+                );
+            }
+            }
+            //左侧父组件
+            class Parent1 extends React.Component{
+            state={
+                count:0,
+            }
+            handleClick=()=>{
+                this.setState({count:this.state.count+1});
+            }
+            render(){
+                console.log('左侧父组件')
+                return (
+                <div className="parent">
+                    <h2>左侧 - 父组件1
+                    <button onClick={this.handleClick}>点我（{this.state.count}）</button>
+                    </h2>
+                    <div className="parent-wrapper">
+                    <Child1 />
+                    <Child2 />
+                    </div>
+                </div>
+                )
+            }
+            };
+            class Child1 extends React.Component{
+            render(){
+                console.log('左侧子组件 - 1');
+                return <div className="child">子组件1-1</div>
+            }
+            };
+            class Child2 extends React.Component{
+            render(){
+                console.log('左侧子组件 - 2');
+                return <div className="child">子组件1-2</div>
+            }
+            };
+            //右侧父组件
+            class Parent2 extends React.Component{
+            state={
+                count:0,
+            }
+            handleClick=()=>{
+                this.setState({count:this.state.count+1});
+            }
+            render(){
+                console.log('左侧父组件')
+                return (
+                <div className="parent">
+                    <h2>右侧 - 父组件2
+                    <button onClick={this.handleClick}>点我（{this.state.count}）</button>
+                    </h2>
+                    <div className="parent-wrapper">
+                    <Child3 />
+                    <Child4 />
+                    </div>
+                </div>
+                )
+            }
+            };
+            class Child3 extends React.Component{
+            render(){
+                console.log('右侧子组件 - 1');
+                return <div className="child">子组件2-1</div>
+            }
+            };
+            class Child4 extends React.Component{
+            render(){
+                console.log('右侧子组件 - 2');
+                return <div className="child">子组件2-2</div>
+            }
+            };
+
+            export default App;
+
+        */
+    </script>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+        1.多受控组件
+        说明：
+        class NameForm extends React.Component{
+            constructor(props){
+                super(props);
+                this.state={uname:'',upass:''};
+                this.valueChange=this.valueChange.bind(this);
+                this.passChange=this.passChange.bind(this);
+            }
+            valueChange(event){
+                this.setState({uname:event.target.value});
+            }
+            passChange(event){
+                this.setState({upass:event.target.value})
+            }
+            render(){
+                return(
+                    <form>
+                        <h1>form user for collection username input</h1>
+                        <input type="text" onChange={this.valueChange} />
+                        <div>{this.state.uname}</div>
+                        <hr />
+                        <input type="text" onChange={this.passChange} />
+                        <div>{this.state.upass}</div>
+                    </form>
+                );
+            }
+        }
+        ReactDOM.render(
+            <NameForm />,
+            document.querySelector('body')
+        )
+------------------------------------------------------------------------------------------------------
+        利用极限思想可以得知，表单收集的信息绝对不可能只用用户名和密码
+        万一表单收集的信息有100多个
+        所以事件委托可以对多受控组件来进行优化
+        -------------------------------------------------------------------------------------------
+        ...
+            valueChange(event){
+                this.setState({uname:event.target.value});
+            }
+            passChange(event){
+                this.setState({upass:event.target.value})
+            }
+        ....
+        ----------------------------------------------------------------------------------------------------
+        class NameForm extends React.Component{
+        constructor(props){
+            super(props);
+            this.state={uname:'',upass:''};
+            this.valueChange=this.valueChange.bind(this);
+        }
+        valueChange(event){
+            // this.setState({uname:event.target.value});
+            // 对state状态变更之前，需要先获取id属性
+            let skey =event.target.id;
+            // console.log(skey);
+            // 对象访问原则，对象属性如果是变量的访问需要通过[]中括号
+            this.setState({[skey]:event.target.value})
+            console.log(this.state)
+        }
+        render(){
+            return(
+            <form>
+                <h1>form user for collection username input</h1>
+                <input type="text" id='uname' onChange={this.valueChange} value={this.state.uname} />
+                <div>{this.state.uname}</div>
+                <hr />
+                <input type="text" id='upass' onChange={this.valueChange} />
+                <div>{this.state.upass}</div>
+            </form>
+            );
+        }
+        }
+        ReactDOM.render(
+        <NameForm />,
+        document.querySelector('body')
+        )
+      */
+    </script>
+  </body>
+</html>

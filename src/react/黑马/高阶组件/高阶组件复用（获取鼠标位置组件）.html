@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        /*
+        
+       import React from "react";
+        // 导入图片资源
+        import img from './images/gx.jpg'
+
+        // render-props 和高阶组件
+        // React组件复用概述
+        // 思考：如果两个组件中的部分功能相似或相同，该如何处理
+        // 处理方式：复用相似的功能（联想函数封装）
+        // 复用什么1.state 2.操作state的方法（组件状态逻辑）
+        // 两种方式：1.render props 模式  2.高阶组件（HOC）
+        // 注意：这两种方式不是新的API，而是利用React自身特点的编码技巧，演化而成的固定模式（写法）
+
+
+        // render props模式
+        //将要复用的state和操作state的方法封装到一个组件中
+        //如何拿到该组件中复用的state，添加一个值为函数的prop，通过函数参数来获取
+        //如何渲染UI
+        //使用该函数的返回值作为要渲染的UI内容
+        //创建Mouse组件
+
+        // 总结  Mouse组件负责：封装复用的状态逻辑代码（1.状态，2.操作状态的方法）
+        // 状态：鼠标的坐标（x，y）通过clientY 以及clientX来获取
+        class Mouse extends React.Component{
+        //鼠标位置state
+        state={
+            x:0,
+            y:0
+        }
+        //鼠标移动事件的处理函数
+        handleMouseMove = e =>{
+            this.setState({
+            x:e.clientX,
+            y:e.clientY
+            })
+        }
+        //监听鼠标移动
+        componentDidMount(){
+            window.addEventListener('mousemove',this.handleMouseMove)
+        }
+        render(){
+            // return null
+            return this.props.render(this.state)
+        }
+        }
+
+        class App extends React.Component {
+        constructor(props) {
+            super(props);
+        }
+        render() {
+            return (
+            <div>
+                <h1>render props 模式</h1>
+                <Mouse render={(mouse)=>{return <p>鼠标位置：{mouse.x} {mouse.y}</p>}} />
+                <Mouse render={mouse=>{
+                return <img src={img} alt="猫"   style={{position:'absolute',top:mouse.y-50,left:mouse.x-50,width:100,height:100}} />
+                }} />
+            </div>
+            );
+        }
+        }
+
+
+        export default App;
+        */
+    </script>
+</body>
+</html>

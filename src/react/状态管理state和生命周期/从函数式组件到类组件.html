@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+        1.导言
+        描述：
+            1）React中对于元素Elements的更变化是与原有的进行对比，找到变化的才更新（UI是可以更新的）
+            2）React中对于组件内部数据的来源，完全依赖于props对象（UI的变化通道只有props）
+            3）React中约定组件函数必须是PFE，不能在在函数内部对props对象进行任何修改（说明由内向外的修改是被禁止的）
+        分析：
+            function Human(_humanName){
+                this.hname=_humanName;//收到外部传入数据的影响
+                var secret='';          //自己和自己内部玩，与外部没关系，也不会影响到外部
+            }
+        结论：
+            所以目前我们对函数式组件的掌握情况来看，不存在额外添加一个“属性”位置，来保存这个私有
+            所以我们先转换成类组件的视角
+        2.从函数组件到类组件
+            函数组件：
+            function Login(_temp){
+                return <div>uname:{_temp.uname},upass:{_temp.upass}</div>
+            }
+            类组件：
+            class Login extends React.Components{
+                constructor(props){
+                    super(props);
+                    ...
+                }
+                ...
+                render(){
+                    return <div>uname:{this.props.uname},upass:{this.props.upass}</div>
+                }
+            }
+
+        3.UI更新
+        说明：
+            class Login extends React.Components{
+                constructor(props){
+                    super(props);
+                    ...
+                }
+                ...
+                render(){
+                    return <div>uid:{this.props.uid},upass:{this.props.upass}</div>
+                }
+            }
+            let num=0;
+            setInterval(()=>{
+                num++;
+                ReactDOM.render(<Login uid={num} upass='2345' />,document.querySelector('body'));
+            },1000);
+            
+        */
+    </script>
+  </body>
+</html>

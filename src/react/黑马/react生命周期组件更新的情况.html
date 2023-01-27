@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+        class App extends React.Component {
+        // 三种导致组件更新的情况
+        // 1.setState   2.forceUpdate()   3.组件接收到新的props都会导致组件的重新渲染
+
+        constructor(props) {
+            // 只要创建组件最先执行
+            super(props);
+            // 初始化state
+            this.state={count:0}
+            // 为事件绑定this
+            this.handleClick=this.handleClick.bind(this);
+        }
+        // 打豆豆加1
+        handleClick=()=>{
+            // this.setState({count:this.state.count+1})
+
+            // 强制更新
+            this.forceUpdate()
+        }
+        render() {
+            return (
+            <div>
+                <Counter count={this.state.count} />
+                <button onClick={this.handleClick}>打豆豆</button>
+            </div>
+            );
+        }
+        }
+        class Counter extends React.Component{
+        render(){
+            console.warn('--子组件--生命周期狗子函数：render')
+            return <h1>统计豆豆被打次数：{this.props.count}</h1>
+        }
+        }
+        */
+    </script>
+</body>
+</html>

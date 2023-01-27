@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // 使用时将整个组件替换到app.js中的class中
+      class App extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = {
+            comments: [
+              { id: 1, name: "jack", content: "沙发！！！" },
+              { id: 2, name: "rose", content: "板凳 ！！！" },
+              { id: 3, name: "tom", content: "楼主好人 ！！！" },
+            ],
+            // 评论人
+            userName: "",
+            // 评论内容
+            userContent: "",
+          };
+        }
+        // 渲染评论列表
+        renderList() {
+          const { comments } = this.state;
+          if (comments.length == 0) {
+            return <div className="no-comment">暂无评论，快去评论吧</div>;
+          }
+          return (
+            <ul>
+              {comments.map((item) => (
+                <li key={item.id}>
+                  <h3>评论人：{item.name}</h3>
+                  <p>评论内容：{item.content}</p>
+                </li>
+              ))}
+            </ul>
+          );
+        }
+        // 处理表单元素
+        handleForm = (e) => {
+          const { name, value } = e.target;
+          this.setState({
+            [name]: value,
+          });
+        };
+        // 添加评论
+        addComment = () => {
+          const { comments, userContent, userName } = this.state;
+          // 非空判断
+          if (userName.trim() == "" || userContent.trim() == "") {
+            alert("请输入评论人和评论内容");
+            return;
+          }
+          // console.log(userContent, userName);
+          //将评论信息添加到state
+          const newComment = [
+            { id: Math.random(), name: userName, content: userContent },
+            ...comments,
+          ];
+          // console.log(newComment);
+          // 更新state里面评论列表的内容，并将对应的评论文本框清空
+          this.setState({
+            comments: newComment,
+            userName: "",
+            userContent: "",
+          });
+        };
+        render() {
+          const { userName, userContent } = this.state;
+          return (
+            <div className="app">
+              <div>
+                <input
+                  className="user"
+                  type="text"
+                  placeholder="请输入评论"
+                  value={userName}
+                  name="userName"
+                  onChange={this.handleForm}
+                />
+                <br />
+                <textarea
+                  className="content"
+                  cols="30"
+                  value={userContent}
+                  name="userContent"
+                  rows="10"
+                  onChange={this.handleForm}
+                  placeholder="请输入评论内容"
+                />
+                <br />
+                <button onClick={this.addComment}>发表评论</button>
+              </div>
+              {/* 通过条件渲染来实现ul和暂无评论的显示与否。通过渲染列表函数来进行优化 */}
+              {/* {this.state.comments.length == 0 ? (
+          <div className="no-comment">暂无评论，快去评论吧</div>
+        ) : (
+          <ul>
+            {this.state.comments.map((item) => (
+              <li key={item.id}>
+                <h3>评论人：{item.name}</h3>
+                <p>评论内容：{item.content}</p>
+              </li>
+            ))}
+          </ul>
+        )} */}
+              {/* 通过调用渲染函数 */}
+              {this.renderList()}
+            </div>
+          );
+        }
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            1.继承Inheritance
+            描述：子类在不主动声明的前提下可以直接使用父类的公有
+            语法：子类 extends 父类
+            说明：
+                1）适用场景
+                    当一个组件已经具备了大部分通用性的功能的时候，就可以通过继承来特异化他的子组件
+                    使得子组件在通用功能的基础上额外具备一些特殊的功能。
+                2）面临问题
+                    a.继承需要对数据模型极为高度的抽象和理解，模型不易于构建和分化
+                    b.不同的人针对相同的场景设计的模型可能也不相同。
+                3）react建议：考虑到OOP编程思想，只要存在组合的可能就不使用继承。
+            延展：
+                React中存在的继承技巧：【正向继承】和【反向继承】
+            例子：
+                // 基类
+                class OrdinaryRoundCornerSquare extends React.Component{
+                    constructor(props){
+                        super(props);
+                        // 公共类名的前缀
+                        this.classTop = 'border-';
+                    }
+                }
+                // 登录子类
+                class LoginSquare extends OrdinaryRoundCornerSquare{
+                    constructor(props){
+                        super(props);
+                        this.color = 'blue';
+                    }
+                    render(){
+                        return(
+                            <div>
+                                // 借用类名前缀来表示不同的页面效果
+                                <h1 className={this.classTop+this.color}>这是登录{this.classTop+this.color}</h1>
+                                <input />
+                            </div>
+                        );
+                    }
+                }
+                // 注册子类
+                class RegistSquare extends OrdinaryRoundCornerSquare{
+                    constructor(props){
+                        super(props);
+                        this.color = 'red';
+                    }
+                    render(){
+                        return(
+                            <div>
+                                // 借用类名前缀来表示不同的页面效果
+                                <h1 className={this.classTop+this.color}>这是注册{this.classTop+this.color}</h1>
+                                <input />
+                            </div>
+                        );
+                    }
+                }
+                // 渲染
+                ReactDOM.render(
+                    <div>
+                        <LoginSquare />
+                        <RegistSquare />
+                    </div>,
+                    document.getElementById('root')
+                );
+                ----------------------------------------------------------------------------
+                ----------------------------------------------------------------------------
+                // 组件
+                class OrdinaryRoundCornerSquare extends React.Component{
+                    constructor(props){
+                        super(props);
+                    }
+                    render(){
+                        return (
+                            <div>
+                                // className直接交给外部props传入
+                                <h1 className={this.props.cn}>这是{this.props.title}, {this.props.cn}</h1>
+                                <input />
+                            </div>
+                        );
+                    }
+                }
+                // 渲染
+                ReactDOM.render(
+                    <div>
+                        // 直接通过props进行传参，把需要的类名传入组件
+                        <OrdinaryRoundCornerSquare cn='border-blue' title='登录' />
+                        <OrdinaryRoundCornerSquare cn='border-red' title='注册' />
+                    </div>,
+                    document.getElementById('root')
+                );
+                ----------------------------------------------------------------------------
+                ----------------------------------------------------------------------------
+                ----------------------------------------------------------------------------
+                ----------------------------------------------------------------------------
+                // children方式实现组合
+                // 函数式组件
+                function OrdinaryRoundCornerSquare(props){
+                    return (<div> {props.children} </div>);
+                }
+                function LoginSquare(){
+                    return (
+                        <OrdinaryRoundCornerSquare>
+                            <h1>here is loginSquare</h1>
+                            <input />
+                        </OrdinaryRoundCornerSquare>
+                    );
+                }
+                ReactDOM.render(<LoginSquare />, document.getElementById('root'));
+                // 类组件
+                class OrdinaryRoundCornerSquare extends React.Component{
+                    constructor(props){ super(props); }
+                    render(){ return (<div> {this.props.children} </div>); }
+                }
+                class LoginSquare extends React.Component{
+                    constructor(props){ super(props); }
+                    render(){ 
+                        return (
+                            <OrdinaryRoundCornerSquare>
+                                <h1>here is loginSquare</h1>
+                                <input />
+                            </OrdinaryRoundCornerSquare>
+                        ); 
+                    }
+                }
+                ReactDOM.render(<LoginSquare />, document.getElementById('root'));
+                ----------------------------------------------------------------------------
+                ----------------------------------------------------------------------------
+                ----------------------------------------------------------------------------
+                ----------------------------------------------------------------------------
+                // 利用JSX语法特性来实现组合
+                // 子组件
+                function OrdinaryRoundCornerSquare(props){
+                    return (
+                        <div> 
+                            {props.tc}
+                            {props.ic}
+                        </div>
+                    );
+                }
+                function TitleCont(props){ return <h1>here is {props.tt}</h1> }
+                function InputCont(){ return <p><input /></p>; }
+                // 父组件
+                function LoginSquare(){
+                    return(
+                        <OrdinaryRoundCornerSquare 
+                            tc={<TitleCont tt='登录'/>}
+                            ic={<InputCont />}
+                        />
+                    );
+                }
+                ReactDOM.render(<LoginSquare/>, document.getElementById('root'));
+        */ 
+    </script>
+</body>
+</html>

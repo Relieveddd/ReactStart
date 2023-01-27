@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+        1.state状态
+        描述：
+          状态就是写在组件内的，用来帮助组件进行UI更新数据变化的“组件内属性”
+          （通常情况下要求状态state必须是一个object类型的数据）
+        语法：
+          this.状态名={key:value1,key2:value2,...};
+        说明：
+          1）状态名没有固定的命名要求，但一般习惯用state表示
+          2）状态属性值object内部的key也没什么固定要求
+          3）状态属性值在组件内可以随意修改，而不用担心像props对象一样造成PFE隐患问题
+        例子：
+        // 修改之前
+            class Login extends React.Components{
+                constructor(props){
+                    super(props);
+                } 
+                render(){
+                    return <div>uid:{this.props.uid},upass:{this.props.upass}</div>
+                }
+            }
+            let num=0;
+            setInterval(()=>{
+                num++;
+                ReactDOM.render(<Login uid={num} upass='2345' />,document.querySelector('body'));
+            },1000);
+        ------------------------------------------------------------------------------------------------
+            // 修改之后 
+        class Login extends React.Component{
+                constructor(props){
+                    super(props);
+                    this.state1231={num:0};
+                }
+                render(){
+                    return <div>uid:{this.state1231.num++},upass:{this.props.upass}</div>
+                }
+            }
+            setInterval(()=>{
+                ReactDOM.render(<Login upass='2345' />,document.querySelector('body'));
+            },1000);
+
+        补充：
+            React中对于状态有很多种叫法，后续书写位置不同会有不同的叫法
+            今天书写的状态叫【本地状态】
+
+        */
+    </script>
+  </body>
+</html>

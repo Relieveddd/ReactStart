@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+        1.列表list
+        导言：
+            通常意义上说列表一般是指像ul这种能够在UI渲染出来的可显示结构
+            在React中提到的列表只能是组件
+                包含有ul列表的组件
+                或者是能够渲染成列表的样子
+                eg：
+                let arr=[100,200,300,400];
+                for(let i =0;i<arr.length;i++){
+                    let tempLi=document.createElement('li');
+                    tempLi.innerlHTML=arr[i];
+                    list.appendChild(tempLi);
+                }
+            说明：
+                添加一个前提
+                前提：
+                    在react中，我们可以直接使用JSX语法构建Element元素
+                    并通过在一个组件里面渲染多个元素的方式来构建
+                例子：
+                   class UserList extends React.Component{
+                    constructor(props){
+                        super(props);
+                    }
+                    render(){
+                        let inners=[];
+                        for(let i=0;i<this.props.dataList.length;i++){
+                        let tempLi=<li>{this.props.dataList[i]}</li>;
+                        inners.push(tempLi);
+                        }
+                        return(
+                        <ul>{inners}</ul>
+                        );
+                    }
+                    }
+                    let arr=['frank','luna','join','sonw'];
+                    ReactDOM.render(
+                    <UserList dataList={arr} />,
+                    document.querySelector("body")
+                    );
+                    ----------------------------------------------------------
+                    因为render里面出了【除渲染以外的其他事情】，不满足模块化编程思想
+                    所以，我们抽离组件，单独提取一个li组件
+                    ------------------------------------------------------------
+                    function ListItem(props){
+                        return <li>{props.context}</li>
+                    }
+                    class UserList extends React.Component{
+                    constructor(props){
+                        super(props);
+                    }
+                    render(){
+                        let inners=this.props.dataList.map(
+                            (_tempUserName)=><ListItem context={_tempUserName} />
+                        );
+                        return(
+                        <ul>{inners}</ul>
+                        );
+                    }
+                    }
+                    let arr=['frank','luna','join','sonw'];
+                    ReactDOM.render(
+                    <UserList dataList={arr} />,
+                    document.querySelector("body")
+                    );
+        */
+    </script>
+  </body>
+</html>

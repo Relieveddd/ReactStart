@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+        import React from "react";
+
+
+        组件性能优化
+        1.减轻state：之储存跟组件渲染相关的数据（比如：count/列表数据/loading等）
+        注意：不用做渲染的数据不要放在state中，比如定时器id等
+        对于这种需要在多个方法中用到的数据，应该放在this中
+
+        2.避免不必要的重新渲染
+        组件更新机制：父组件更新会引起子组件也被更新
+        问题：子组件没有任何变化时也会重新渲染
+        如何避免不必要的重新渲染呢？
+        解决方式：使用钩子函数 shouldComponentUpdate(nextProps,nextState)
+        作用：通过返回值决定该组件是否重新渲染，返回ture表示重新渲染，false表示不重新渲染
+
+        案例：随机数
+
+
+        // class App extends React.Component {
+        //   constructor(props){
+        //     super(props);
+        //     this.state={count:0}
+        //   }
+        //   handleClick=()=>{
+        //     this.setState(
+        //       state=>{
+        //         return {count:this.state.count+1}
+        //       }
+        //     )
+        //   }
+        //   // 钩子函数
+        //   shouldComponentUpdate(nextProps,nextState){
+        //     // 返回false，阻止组件重新渲染
+
+        //     // nextState可以获取表示最新的状态
+        //     console.log('最新的state',nextState);
+        //     // this.state返回更新前的状态
+        //     console.log(this.state);
+        //     // return false; 
+        //     return true;
+        //   }
+        //   render() {
+        //     console.log('组件更新了')
+        //     return (
+        //       <div>
+        //         <h2>计数器：{this.state.count}</h2>
+        //         <button onClick={this.handleClick}>+1</button>
+        //       </div>
+        //     );
+        //   }
+        // }
+
+        // 案例
+        // export default App;
+        class App extends React.Component {
+        constructor(props){
+            super(props);
+            this.state={number:0}
+        }
+        handleClick=()=>{
+            this.setState(
+            ()=>{
+                return {number:Math.floor(Math.random()*3)}
+            }
+            )
+        }
+        // 因为两次生成的随机数可能相同，如果相同，此时不需要重新渲染
+        // shouldComponentUpdate(nextProps,nextState){
+        //   console.log('最新状态：',nextState,'当前状态：',this.state);
+        //   // if(nextState.number===this.state.number){
+        //   //   return false;
+        //   // }
+        //   //  return true;
+
+
+        //   //   if(nextState.number!==this.state.number){
+        //   //   return true;
+        //   // }
+        //   //  return false;
+
+        //   return nextState.number!==this.state.number;
+        // }
+        render() {
+            // console.log('render')
+            return (
+            <div>
+                <NumberBox number={this.state.number} />
+                <button onClick={this.handleClick}>重新生成</button>
+            </div>
+            );
+        }
+        }
+
+
+        class NumberBox extends React.Component{
+        shouldComponentUpdate(nextProps,nextState){
+            console.log('最新的props：',nextProps,'当前props：',this.props)
+            // 如果前后两次的number值相同，就返回false，不更新组件
+            // if(nextProps.number===this.props.number){
+            //   return false;
+            // }
+            // return true;
+            return nextProps.number!==this.nextProps.number;
+        }
+        render(){
+            console.log('子组件的 render')
+            return <h1>随机数：{this.props.number}</h1>
+        }
+        }
+
+        export default App;
+        */
+    </script>
+</body>
+</html>

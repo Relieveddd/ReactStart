@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script>
+      /*
+        1.JSX语法
+        描述：
+            JSX，即JavaScript XML缩写的，是JavaScript的一种扩展语法
+            再React中我们使用这种来构建UI结构
+        语法：
+            let | var |const ele =<?E>..</?E>;
+        说明：
+            1) 可能会觉得像mastch(就是{{..}}大胡子语法，插值表达式)
+                不一样的地方，JSX具备Javascript功能
+            2)JSX本质上依然是Javascript代码，所以末尾的分号不能省略！
+            3)React 是具备自己的虚拟dom对象
+                a.属性命名使用驼峰命名法  class就必须写成className
+                b.JSX语法采用了类似HTML4 Strict严格模式，自闭和标签的/必须写。
+        例子：
+            let ele =<div>hello React</div>;
+            let mtImg =<img src="" />
+
+            let ele = <div>Hello React!</div>;
+            ReactDom.render(ele, document.querySelector("#root"));
+        补充：
+            React并不强制书写JSX语法
+        
+        2.JSX可以做的事
+        说明：
+            1）理论上说JSX语法相比于HTML方向，更倾向于JavaScript
+            2）基本上JavaScript可以做的，JSX都可以做
+            3)React建议用{}分辨JSX，用来规避自动分号填充规则
+        例子：
+            1）JSX可以直接赋值给变量
+            2）JSX可以使用类似`模板字符串的语法-嵌入表达式`  在内部表示
+            3)JSX可以使用函数计算结果，但是函数调用不加分号
+        */
+    </script>
+  </body>
+</html>

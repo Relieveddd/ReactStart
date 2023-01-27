@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+        import React from "react";
+        // 导入图片资源
+        import img from './images/gx.jpg'
+        import PropTypes from 'prop-types'
+
+        // render-props 和高阶组件
+        // children代替render属性
+        // 注意：并不是该模式叫render props 就必须使用名为render 的prop，实际上可以使用任意名称的prop
+        // 把prop是一个函数并且告诉组件要渲染什么内容的技术叫做：render props模式
+        // 推荐：使用children代替render属性
+
+        class Mouse extends React.Component{
+        //鼠标位置state
+        state={
+            x:0,
+            y:0
+        }
+        //鼠标移动事件的处理函数
+        handleMouseMove = e =>{
+            this.setState({
+            x:e.clientX,
+            y:e.clientY
+            })
+        }
+        //监听鼠标移动
+        componentDidMount(){
+            window.addEventListener('mousemove',this.handleMouseMove)
+        }
+        //推荐卸载之前移除鼠标监听事件
+        componentWillUnMount(){
+            window.removeEventListener("mousemove",this.handleMouseMove)
+        }
+        render(){
+            // return null
+            return this.props.children(this.state)
+        }
+        }
+
+        // 添加props校验
+        Mouse.propsTypes={
+        children:PropsTypes.func.isRequired
+        }
+
+        
+        class App extends React.Component {
+        constructor(props) {
+            super(props);
+        }
+        render() {
+            return (
+            <div>
+                <h1>render props 模式</h1>
+                <Mouse>
+                {
+                    mouse=>{
+                    return(
+                        <p>
+                        鼠标位置：{mouse.x} {mouse.y}
+                        </p>
+                    )
+                    }
+                }
+                </Mouse>
+            <Mouse>
+                {
+                mouse=>{
+                    return(
+                    <img src={img} style={{position:"absolute",top:mouse.y-50,left:mouse.x-50,height:100,width:100}} />
+                    )
+                }
+                }
+            </Mouse>
+            </div>
+            );
+        }
+        }
+
+
+        export default App;
+
+        */
+    </script>
+</body>
+</html>

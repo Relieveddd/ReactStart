@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+        import React from "react";
+
+
+        组件性能优化
+        组件复用
+        思考：如果两个组件中的部分功能相似或相同，该如何处理
+        处理方式：复用相似的功能（类似封装函数）
+
+        4.3纯组件
+        说明：纯组件内部对比是shallow compare（浅层对比）
+        对于值类型来说：比较两个值是否相同（直接复制即可，没有坑）
+        对于引用类型来说：只比较对象的引用（地址）是否相同
+
+
+
+        class App extends React.Component {
+        constructor(props){
+            super(props);
+            this.state={
+            obj:{
+                number:0
+            }
+            }
+        }
+        handleClick=()=>{
+            // 正确做法：创建新对象
+            const newObj={...this.state.obj,number:Math.floor(Math.random()*3)}
+            this.setState(()=>{
+            return {
+                obj:newObj
+            }
+            })
+        }
+        render() {
+            console.log('父组件重新render')
+            return (
+            <div>
+                <h1>随机数：{this.state.obj.number}</h1>
+                <button onClick={this.handleClick}>+1</button>
+            </div>
+            );
+        }
+        }
+
+
+
+        export default App;
+        */
+    </script>
+</body>
+</html>

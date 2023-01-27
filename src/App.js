@@ -1,0 +1,83 @@
+import React from "react";
+import { BrowserRouter as Router, Route, Routes, Link, useNavigate } from 'react-router-dom'
+/*
+    编程式导航：
+    通过js代码来实现页面跳转
+    history是react路由提供的，用于获取浏览器历史记录的相关信息
+    push（path）：跳转到某个页面，参数path表示要跳转的路径
+    go(n):前进或后退到某个页面，参数n表示前进或后退的页面数量。（比如：-1表示后退一页）
+
+
+    react路由6.0以后写法的变化
+    首先6.0移除了history方法  ，使用useNavigate方法代替
+
+    所以使用的时候需要import useNavigate，之后定义一个变量保存useNavigate（）方法，
+    navigate('/lujing')将要跳转的页面
+    navigate(-1)返回上衣页面
+
+
+    模糊匹配模式
+    React路由是模糊匹配模式
+        模糊匹配规则：只要pathname以path开头就会匹配成功
+
+    推荐：
+    精确匹配模式
+    给Route组件添加exact属性，就可以让他的匹配模式变为精确匹配模式
+    精确匹配模式下：只有当path和pathname完全匹配的时候才会跳转路由
+    一般情况下，模式给路由添加exact属性
+
+*/
+
+
+const Login = () => {
+    let navigate = useNavigate();
+    const handleLogin = () => {
+        //使用编程式路由实现路由跳转
+        //省略其他代码
+        navigate('/');
+        // react router 5的写法：this.props.history.push('/home')
+    }
+    return (
+        <div>
+            <p>
+                登录页面：
+            </p>
+            <button onClick={handleLogin}>
+                登录
+            </button>
+        </div>
+    )
+}
+const Home = props => {
+    let navigate = useNavigate();
+    const handleBack = () => {
+        navigate(-1);
+        // react router 5 的写法：this.props.history.go(-1)
+
+    }
+    return (
+        <div>
+            <h1>我是后台首页</h1>
+            <button onClick={handleBack}>返回登陆页面</button>
+        </div>
+    )
+}
+class App extends React.Component {
+    render() {
+        return (
+            <Router>
+                <div>
+                    <h1>编程式路由</h1>
+                    <Link to='/login'>编程式路由</Link>
+                    <Routes>
+                        <Route path='/' element={<Home />} />
+                        <Route path='/login' element={<Login />} />
+                    </Routes>
+                </div>
+            </Router>
+        )
+    }
+}
+
+
+export default App;

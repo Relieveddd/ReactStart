@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /*
+        React路由基础
+        1.能够说出React路由的作用
+        2.能够掌握react-router-dom的基本使用
+        3.能够使用编程式导航跳转路由
+        4.能够知道React路由的匹配模式
+
+        1.React路由介绍
+        现在前端应用大多都是SPA（单页应用程序），也就是只有一个html页面的应用程序。因为他的用户体验更好
+        ,对服务器的压力更小，所以更受欢迎。为了有效地使用单个页面来管理原来多页面的功能，前端路由应运而生
+
+        前端路由的功能：让用户从一个视图（页面）导航到另一个视图（页面）
+        前端路由是一套映射规则，在React中，是URL路径与组件的对应关系
+        使用React路由简单来说，就是配置路径和组件（配对）
+
+        2.路由的基本使用
+        2.1安装 yarn add react-router-dom   || npm i react-router-dom
+        2.2导入路由的三个核心组件Router/Route/Link
+            import {BrowserRouter as Router ,Route,Link} from 'react-router-dom';
+        2.3使用Router组件包裹整个应用（重要）
+            <Router>
+                <div>
+                    <h1>React路由基础</h1>
+                </div
+            </Router>
+        2.4使用Link组件作为导航菜单（路由入口）
+            <Link to="/first">页面1</Link>
+        2.5使用Route组件配置路由规则和要展示的组件（路由出口）
+            注意：6.0之后的版本需要使用Routes包裹，不能用Route
+            const First =()=><p>页面一的页面内容</p>
+            <Router>
+            <div className='App'>
+                <Link to="/first">页面一</Link>
+                <Route path="/first" component={First}></Route>
+            </div>
+            </Router>
+        */
+    </script>
+</body>
+
+</html>

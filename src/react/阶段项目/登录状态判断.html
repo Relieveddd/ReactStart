@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      // css    .pro:nth-child(2){margin-top:100px}
+      // 子组件
+      class UserLoginState extends React.Component {
+        constructor(props) {
+          super(props);
+        }
+        render() {
+          return (
+            <div className="pro">
+              <div>here is {this.props.pageName} LoginState</div>
+              <div>{this.props.logined ? "已登录" : "未登录"}</div>
+              <hr />
+              <div>
+                用户名:
+                <input
+                  id="username"
+                  value={this.props.username}
+                  onChange={this.props.inputHandle}
+                />
+              </div>
+              <div>
+                密码框:
+                <input
+                  id="password"
+                  value={this.props.password}
+                  onChange={this.props.inputHandle}
+                />
+              </div>
+              <p>
+                <button onClick={this.props.loginHandle}>登录</button>
+                &nbsp;
+                <button onClick={this.props.exitHandle}>退出</button>
+              </p>
+            </div>
+          );
+        }
+      }
+      // 父组件
+      class Pages extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = { logined: false, username: "", password: "" };
+          this.inputHandle = this.inputHandle.bind(this);
+          this.loginHandle = this.loginHandle.bind(this);
+          this.exitHandle = this.exitHandle.bind(this);
+        }
+        inputHandle() {
+          let keyName = event.target.id;
+          this.setState({ [keyName]: event.target.value });
+          console.log(this.state);
+        }
+        loginHandle() {
+          if (
+            this.state.username == "frank" &&
+            this.state.password == "123456"
+          ) {
+            this.setState({ logined: true });
+          }
+        }
+        exitHandle() {
+          if (this.state.logined) {
+            this.setState({ logined: false });
+          }
+        }
+        render() {
+          return (
+            <div>
+              <UserLoginState
+                logined={this.state.logined}
+                username={this.state.username}
+                password={this.state.password}
+                inputHandle={this.inputHandle}
+                loginHandle={this.loginHandle}
+                exitHandle={this.exitHandle}
+                pageName="首页"
+              />
+              <UserLoginState
+                logined={this.state.logined}
+                username={this.state.username}
+                password={this.state.password}
+                inputHandle={this.inputHandle}
+                loginHandle={this.loginHandle}
+                exitHandle={this.exitHandle}
+                pageName="热卖"
+              />
+            </div>
+          );
+        }
+      }
+      // 渲染
+      ReactDOM.render(<Pages />, document.querySelector("body"));
+    </script>
+  </body>
+</html>
